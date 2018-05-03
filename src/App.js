@@ -8,12 +8,6 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      projects: []
-    }
-  }
-
-  componentWillMount(){
-    this.setState({
       projects: [
         {
           id: uuid.v4(),
@@ -31,8 +25,9 @@ class App extends Component {
           category: 'Web Development'
         }
       ]
-    });
+    }
   }
+
   handleAddProject(project){
       let projects = this.state.projects;
       projects.push(project);
@@ -41,7 +36,7 @@ class App extends Component {
 
   handleDeleteProject(id){
       let projects = this.state.projects;
-      let index = projects.findIndex(project => project.id === id);
+      const index = projects.findIndex(project => project.id === id);
       projects.splice(index, 1);
       this.setState({projects});
   }

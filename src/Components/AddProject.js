@@ -3,16 +3,11 @@ import PropTypes from 'prop-types';
 import uuid from 'uuid';
 
 class AddProject extends Component {
-  constructor(){
-      super();
-      this.state = {
-        newProject: {}
-      }
-  }
 
   static defaultProps = {
     categories: ['Web Design', 'Web Development', 'Mobile Development']
   }
+
   handleSubmit(e){
       if(this.refs.title.value === ''){
           alert('Title is required');
@@ -23,7 +18,6 @@ class AddProject extends Component {
             category: this.refs.category.value
           }
         }, function(){
-          //console.log(this.state);
           this.props.addProject(this.state.newProject);
         })
       }
@@ -31,7 +25,7 @@ class AddProject extends Component {
   }
 
   render() {
-    let categoryOptions = this.props.categories.map(category => {
+    const categoryOptions = this.props.categories.map(category => {
       return <option key={category} value={category}> {category} </option>
     });
     return (
@@ -58,8 +52,8 @@ class AddProject extends Component {
 }
 
 AddProject.propTypes = {
-  categories: PropTypes.array,
-  addProject: PropTypes.func
+  categories: PropTypes.array.isRequired,
+  addProject: PropTypes.func.isRequired
 }
 
 export default AddProject;
