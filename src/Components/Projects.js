@@ -1,25 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ProjectItem from './ProjectItem';
 import PropTypes from 'prop-types';
 
-class Projects extends Component {
-  render() {
+export default function Projects(props) {
     return (
-      <div className="Projects">
-        <h3>Latest Projects</h3>
-        { this.props.projects.map(project => {
-            return (
-              <ProjectItem onDelete={this.props.onDelete} key={project.title} project={project} />
-            );
-          })
-        }
-      </div>
+        <div className="Projects">
+            <h3>Latest Projects</h3>
+            {props.projects.map(project => {
+                return (
+                    <ProjectItem onDelete={props.onDelete} key={project.title} project={project}/>
+                );
+            })
+            }
+        </div>
     );
-  }
 }
 
 Projects.propTypes = {
-  projects: PropTypes.array.isRequired,
-  onDelete: PropTypes.func.isRequired
-}
-export default Projects;
+    projects: PropTypes.array.isRequired,
+    onDelete: PropTypes.func.isRequired
+};
