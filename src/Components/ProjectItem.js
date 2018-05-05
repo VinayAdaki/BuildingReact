@@ -1,21 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class ProjectItem extends Component {
-  deleteProject(id){
-    this.props.onDelete(id);
-  }
-  render() {
+export default function ProjectItem(props) {
+    const {
+        title,
+        category,
+        id
+    } = props.project;
+
     return (
-      <li className="ProjectItem">
-      <strong>{this.props.project.title}</strong>:{this.props.project.category} <a href="#" onClick={this.deleteProject.bind(this, this.props.project.id)}>Delete Project</a>
-      </li>
+        <li className="ProjectItem">
+            <strong>{title}</strong>:{category}
+            <a href="#" onClick={props.onDelete.bind(this, id)}>Delete Project</a>
+        </li>
     );
-  }
 }
 
 ProjectItem.propTypes = {
-  project: PropTypes.object,
-  onDelete: PropTypes.func
-}
-export default ProjectItem;
+    project: PropTypes.shape({
+        title:PropTypes.string,
+        category:PropTypes.string,
+        id:PropTypes.string
+    }),
+    onDelete: PropTypes.func
+};
